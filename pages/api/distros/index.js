@@ -1,6 +1,6 @@
 import dbConnect from '../../../lib/dbConnect';
 const Distro = require('../../../models/Distro');
-const Environment = require('../../../models/Environment');
+// const Environment = require('../../../models/Environment');
 
 export default async function handler(req, res) {
   const { method } = req;
@@ -10,26 +10,41 @@ export default async function handler(req, res) {
   switch (method) {
     case 'GET':
       try {
-        const distros = await Distro
+        const distroList = await Distro
         .find({})
-        .populate(
-          [
-            { path: 'environment' },
-            { path: 'baseList', select: 'name' }
-          ]
-        )
-        res.status(200).json({ success: true, data: distros });
+        .sort({'nameLowerCase': 1})
+        .populate([
+          { path: 'environmentList' },
+          { path: 'baseList', select: 'name' }
+        ])
+        .select('-nameLowerCase')
+        res.status(200).json({ success: true, data: distroList });
       } catch (error) {
         res.status(400).json({ success: false })
       }
       break;
     case 'POST':
       try {
-        res.status(201).json({ success: true, data: "hello world" });
+
+        const {
+          name,
+          description,
+          baseList,
+          origin,
+          architecture,
+          environmentList,
+          status,
+          url
+        } = req.body
+
+        // const newDistro = await new Distro({name: req.body.name})
+        console.log(req.body);
+        res.status(201).json({ success: true, data: req.body });
       }
       catch (error) {
         res.status(400).json({ success: false })
       }
+      break;
     default:
       res.status(400).json({ success: false })
       break
