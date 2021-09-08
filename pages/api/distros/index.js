@@ -6,11 +6,14 @@ const Environment = require('../../../models/Environment');
 export default async function handler(req, res) {
   const { method } = req;
 
-  const convertToObjectId = (objString) => mongoose.Types.ObjectId(objString);
-
+  // Connecting to MongoDB
   await dbConnect();
 
   switch (method) {
+    // GET Route
+    // Returns success and the list of all the distros
+    // Pass selectors in the query.
+    // eg. /api/distro?select=name%20description for name and description
     case 'GET':
       try {
         const selectors = req.query.select;
@@ -27,6 +30,12 @@ export default async function handler(req, res) {
         res.status(400).json({ success: false });
       }
       break;
+    
+    // POST Route
+    // Returns success and the newly added distro object
+    // Pass valid environment & base IDs
+    // homepage and download urls to be sent as
+    // url: { homepage: "www.somewebsite.com", download: "www.somewebsite.com/download" }
     case 'POST':
       try {
         const {
@@ -39,7 +48,8 @@ export default async function handler(req, res) {
           status,
           url
         } = req.body;
-        
+        // Function to convert an object ID string to mongoose object ID
+        const convertToObjectId = (objString) => mongoose.Types.ObjectId(objString);
         let baseListAsObjectIds = Array.from(baseList, (element) => convertToObjectId(element));
         let environmentListAsObjectIds = Array.from(environmentList, (element) => convertToObjectId(element));
 
