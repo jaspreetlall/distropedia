@@ -1,9 +1,15 @@
+import { useRouter } from 'next/router';
+
 function Distro() {
-    return (
-        <div>
-            hello
-        </div>
-    )
+
+	const router = useRouter();
+	const query = router.query;
+
+	return (
+		<div>
+			Distro requested is {query.id}
+		</div>
+	)
 }
 
 export default Distro
