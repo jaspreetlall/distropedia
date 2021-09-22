@@ -19,7 +19,7 @@ export default async function handler(req, res) {
         const { id } = req.query;
 
         const requestedDistro = await Distro
-        .findOneById(id)
+        .findById(id)
         .populate([
           { path: 'environmentList' },
           { path: 'baseList', select: 'name' }
