@@ -16,7 +16,7 @@ function Distros({distroList, success}) {
 									<div key={distro._id}>
 										<h1>{distro.name}</h1>
 										<p>{distro.description}</p>
-										<Link href="/distros/[_id]" as={`/distros/${distro._id}`}>
+										<Link href="/distros/[id]" as={`/distros/${distro.name}`}>
 											<a>{distro.name}</a>
 										</Link>
 									</div>
