@@ -1,6 +1,10 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router'
 
 function Distros({distroList, success}) {
+
+	const router = useRouter();
+
 	return (
 		<div>
 			{
@@ -19,18 +23,22 @@ function Distros({distroList, success}) {
 								)
 							})
 						}
+						<button onClick={() => router.back()}>Go Back</button>
 					</div>
-				: <h2>failed</h2>
+				: <div>
+						<h3>We are sorry! Something went wrong!</h3>
+						<button onClick={() => router.back()}>Go Back</button>
+					</div>
 			}
 		</div>
 	)
 }
 
 export const getServerSideProps = async () => {
-  const res = await fetch("http://localhost:3000/api/distros?select=name%20description")
+  const results = await fetch("http://localhost:3000/api/distros?select=name%20description")
 		.then((res) => res.json());
   return {
-    props: { distroList: res.data, success: res.success	},
+    props: { distroList: results.data, success: results.success	},
   };
 }
 
