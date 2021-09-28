@@ -1,1 +1,8 @@
-@import "../../styles/partials/fonts";
+@import '../../styles/partials/mixins'; 
+
+.nav {
+  @include container;
+  &__logo {
+    color: green;
+  }
+}
