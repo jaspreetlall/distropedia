@@ -1,0 +1,8 @@
+@import '../../styles/partials/mixins';
+// @import '../../styles/partials/variables';
+
+.distrolist {
+  &__container {
+    @include responsive-container;
+  }
+}
