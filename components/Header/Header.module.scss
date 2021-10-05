@@ -1,8 +1,43 @@
-@import '../../styles/partials/mixins'; 
+@import '../../styles/partials/mixins';
+@import '../../styles/partials/variables';
 
 .nav {
-  @include container;
+  background-color: $grey1;
+  position: relative;
+  &__container {
+    @include responsive-container;
+    @include desktop {
+      @include flex(row, space-between, flex-end)
+    }
+  }
   &__logo {
-    color: green;
+    display: inline-block;
+    &-title {
+      display: inline-block;
+      font-size: $f-sz-logo;
+      color: $light0;
+      padding: 0 1rem;
+      transition: $transition;
+      &:hover {
+        background-color: $accent;
+      }
+    }
+  }
+  &__links {
+    display: flex;
+    gap: 4px;
+    &-item {
+      font-size: $f-sz-nav-links;
+      font-weight: 600;
+      color: $accent;
+      background-color: $light0;
+      border-radius: $radius $radius 0 0;
+      padding: 0px clamp(0.6rem, 1vw, 1.2rem);
+      transition: $transition;
+      &:hover {
+        background-color: $accent;
+        color: $light0;
+      }
+    }
   }
 }

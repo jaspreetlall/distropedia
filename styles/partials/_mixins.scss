@@ -12,6 +12,18 @@
 	align-items: center;
 }
 
+@mixin responsive-container {
+	width: 87vw;
+	margin: auto;
+	@include tablet {
+		width: 84.375vw;
+	}
+	@include desktop {
+		width: 80.3125vw;
+		max-width: 1200px;
+	}
+}
+
 // Breakpoints - Tablet
 
 @mixin tablet {
@@ -23,17 +35,5 @@
 @mixin desktop {
 	@media screen and (min-width: 1200px) {
 		@content;
-	}
-}
-
-@mixin container {
-	width: 87vw;
-	margin: auto;
-	@include tablet {
-		width: 84.375vw;
-	}
-	@include desktop {
-		width: 80.3125vw;
-		max-width: 1200px;
 	}
 }
