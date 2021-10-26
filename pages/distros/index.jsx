@@ -1,6 +1,7 @@
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
 import Layout from '../../components/layout';
 import DistroList from '../../components/DistroList/DistroList';
+import API_URL from '../../helpers/urlHelper';
 
 function Distros({distroList, success}) {
 
@@ -21,7 +22,7 @@ function Distros({distroList, success}) {
 }
 
 export const getServerSideProps = async () => {
-  const results = await fetch("http://localhost:3000/api/distros?select=name%20description%baseList")
+  const results = await fetch(`${API_URL}/api/distros?select=name%20description%baseList`)
 		.then((res) => res.json());
   return {
     props: { distroList: results.data, success: results.success	},

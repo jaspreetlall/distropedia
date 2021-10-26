@@ -1,4 +1,5 @@
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
+import API_URL from '../../helpers/urlHelper';
 
 function Distro({distro, success}) {
 
@@ -24,7 +25,7 @@ function Distro({distro, success}) {
 
 export const getServerSideProps = async (context) => {
 	const { id } = context.query;
-  const result = await fetch(`http://localhost:3000/api/distros/${id}?select=name%20description`)
+  const result = await fetch(`${API_URL}/api/distros/${id}?select=name%20description`)
 	.then((res) => res.json());
   return {
     props: { distro: result.data, success: result.success },
