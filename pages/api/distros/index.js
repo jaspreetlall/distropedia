@@ -34,8 +34,8 @@ export default async function handler(req, res) {
     // POST Route
     // Returns success and the newly added distro object
     // Pass valid environment & base IDs
-    // homepage and download urls to be sent as
-    // url: { homepage: "www.somewebsite.com", download: "www.somewebsite.com/download" }
+    // homepage, download, logo urls to be sent as
+    // url: { homepage: "www.somewebsite.com", download: "www.somewebsite.com/download" ... }
     case 'POST':
       try {
         const {

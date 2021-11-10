@@ -22,7 +22,7 @@ function Distros({distroList, success}) {
 }
 
 export const getServerSideProps = async () => {
-  const results = await fetch(`${API_URL}/api/distros?select=name%20description%baseList`)
+  const results = await fetch(`${API_URL}/api/distros?select=name%20baseList%20url`)
 		.then((res) => res.json());
   return {
     props: { distroList: results.data, success: results.success	},

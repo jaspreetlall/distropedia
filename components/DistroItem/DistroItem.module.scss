@@ -1,0 +1,31 @@
+@import '../../styles/partials/mixins';
+
+.distro-item {
+  border: 1px solid grey;
+  display: flex;
+  &__logo {
+    // display: flex;
+    // align-items: center;
+    margin: 1.6rem;
+    height: 6.4rem;
+    width: 6.4rem;
+    &-img {
+      object-fit: contain;
+      height: 100%;
+      width: 100%;
+    }
+  }
+  &__info {
+    &-title {
+
+    }
+    &-link {
+      display: inline-block;
+      border: 2px solid red;
+      height: 24px;
+      width: 96px;
+      text-align: center;
+      
+    }
+  }
+}

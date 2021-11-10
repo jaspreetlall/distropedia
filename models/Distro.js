@@ -21,7 +21,8 @@ const DistroSchema = new Schema({
   visits: { type: Number },
   url: {
     homepage: { type: String },
-    download: { type: String }
+    download: { type: String },
+    logo: { type: String }
   }
 })
 
