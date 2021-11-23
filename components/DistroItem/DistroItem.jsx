@@ -4,28 +4,43 @@ import Link from 'next/link';
 function DistroItem({distro}) {
   console.log(distro.baseList);
   return (
-    <article className={styles['distro-item']}>
-      <div className={styles['distro-item__logo']}>
-        <img src={distro.url.logo} className={styles['distro-item__logo-img']} alt={`${distro.name} Logo`} />
+    <article className={styles['distro']}>
+      <div className={styles['distro__logo']}>
+        <img src={distro.url.logo} className={styles['distro__logo-img']} alt={`${distro.name} Logo`} />
       </div>
-      <body className={styles['disto-item__info']}>
-        <h2 className={styles['disto-item__info-title']}>{distro.name}</h2>
+      <div className={styles['distro__info']}>
+        <h2 className={styles['distro__info-name']}>{distro.name}</h2>
+        <section className={styles['distro__info-base']}>
+          <h3 className={styles['distro__info-base-title']}>Base</h3>
+          {
+            (distro.baseList.length>0)
+            ? <ul className={styles['distro__info-base-list']}>
+              {
+                distro.baseList.map((base) => {
+                  return <li className={styles['distro__info-base-list']} key={base._id}>{base.name}</li>
+                })
+              }
+              </ul>
+            : <div className={styles['distro__info-base-list distro__info-base-list']}>Independent</div>
+          }
+        </section>
         {
-          (distro.baseList.length>0)
-          ? <div>
-            Based on:
+          (distro.environmentList.length>0)
+          && <section className={styles['distro__info-environment']}>
+            <h3 className={styles['distro__info-environment-title']}>Environment</h3>
+            <ul className={styles['distro__info-environment-list']}>
             {
-              distro.baseList.map((base) => {
-                return <span key={base._id}>{base.name}</span>
+              distro.environmentList.map((environment) => {
+                return <li className={styles['distro__info-environment-list']} key={environment._id}>{environment.name}</li>
               })
             }
-          </div>
-          : <div>Independent</div>
+            </ul>
+          </section>
         }
         <Link href="/distros/[id]" as={`/distros/${distro._id}`}>
-          <a className={styles['distro-item__info-link']}>View</a>
+          <a className={styles['distro__info-link']}>View</a>
         </Link>
-      </body>
+      </div>
     </article>
   )
 }
