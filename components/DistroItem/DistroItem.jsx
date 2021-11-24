@@ -17,11 +17,11 @@ function DistroItem({distro}) {
             ? <ul className={styles['distro__info-base-list']}>
               {
                 distro.baseList.map((base) => {
-                  return <li className={styles['distro__info-base-list']} key={base._id}>{base.name}</li>
+                  return <li className={styles['distro__info-base-list-item']} key={base._id}>{base.name}</li>
                 })
               }
               </ul>
-            : <div className={styles['distro__info-base-list distro__info-base-list']}>Independent</div>
+            : <div className={styles['distro__info-base-list distro__info-base-list-item']}>Independent</div>
           }
         </section>
         {
@@ -31,7 +31,7 @@ function DistroItem({distro}) {
             <ul className={styles['distro__info-environment-list']}>
             {
               distro.environmentList.map((environment) => {
-                return <li className={styles['distro__info-environment-list']} key={environment._id}>{environment.name}</li>
+                return <li className={styles['distro__info-environment-list-item']} key={environment._id}>{environment.name}</li>
               })
             }
             </ul>
